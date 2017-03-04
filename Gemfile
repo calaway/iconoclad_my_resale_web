@@ -41,9 +41,18 @@ gem 'omniauth-facebook'
 # Securely manage confidential environment variables
 gem 'figaro'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
 end
 
 group :development do
