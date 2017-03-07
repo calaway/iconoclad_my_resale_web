@@ -35,7 +35,7 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
     expect(User.last.uid).to eq "12345678901234567"
     expect(User.last.name).to eq "Christopher Calaway"
     expect(User.last.oauth_token).to eq "xxxxxx"
-    expect(User.last.oauth_token_expires_at).to eq 1493955507
+    expect(User.last.oauth_token_expires_at).to eq Time.at(1493955507)
     expect(current_path).to eq "/"
   end
 end
