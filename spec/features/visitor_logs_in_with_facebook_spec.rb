@@ -17,7 +17,11 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
     expect(user.name).to eq "Christopher Calaway"
     expect(user.oauth_token).to eq "xxxxxx"
     expect(user.oauth_token_expires_at).to eq Time.at(1493955507)
+
     expect(current_path).to eq "/"
     expect(page).to have_text "Welcome, #{user.name}"
+    within "#flash-messages" do
+      expect(page).to have_text "Login Successful"
+    end
   end
 end
