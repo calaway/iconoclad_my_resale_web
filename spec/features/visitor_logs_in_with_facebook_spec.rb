@@ -30,7 +30,12 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
 
     click_on "Log in with Facebook"
 
-    expect(current_path).to eq "/"
     expect(User.count).to eq 1
+    expect(User.last.provider).to eq "facebook"
+    expect(User.last.uid).to eq "12345678901234567"
+    expect(User.last.name).to eq "Christopher Calaway"
+    expect(User.last.oauth_token).to eq "xxxxxx"
+    expect(User.last.oauth_token_expires_at).to eq 1493955507
+    expect(current_path).to eq "/"
   end
 end
