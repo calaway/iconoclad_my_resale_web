@@ -5,6 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    
+    redirect_to "/"
   end
 end

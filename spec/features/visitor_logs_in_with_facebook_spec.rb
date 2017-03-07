@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Visitor logs in with facebooks", type: :feature do
   scenario "they are taken to facebook to confirm" do
     OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
       "provider"=>"facebook",
       "uid"=>"12345678901234567",
       "info"=>{
@@ -27,9 +27,10 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
 
     expect(current_path).to eq "/login"
     expect(User.count).to eq 0
-    
+
     click_on "Log in with Facebook"
 
-    expect(User.count).to eq 0
+    expect(current_path).to eq "/"
+    expect(User.count).to eq 1
   end
 end
