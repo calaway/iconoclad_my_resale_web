@@ -1,13 +1,23 @@
 require 'rails_helper'
 
 RSpec.feature "Visitor logs in with facebooks", type: :feature do
-  # As a Visitor
-  # When I visit "/"
-  visit root_path
-  # I should be at "/login"
-  expect(page).to eq "/login"
-  # When I click on "Log in with Facebook"
-  click_on "Log in with Facebook"
-  # I should land on "https://www.facebook.com/v2.8/dialog/oauth"
-  expect(page).to eq "https://www.facebook.com/v2.8/dialog/oauth"
+  scenario "they are taken to facebook to confirm" do
+    visit root_path
+
+    expect(current_path).to eq "/login"
+    expect(User.count).to eq 0
+
+    omniauth_facebook_mock
+    click_on "Log in with Facebook"
+
+    expect(User.count).to eq 1
+    user = User.last
+    expect(user.provider).to eq "facebook"
+    expect(user.uid).to eq "12345678901234567"
+    expect(user.name).to eq "Christopher Calaway"
+    expect(user.oauth_token).to eq "xxxxxx"
+    expect(user.oauth_token_expires_at).to eq Time.at(1493955507)
+    expect(current_path).to eq "/"
+    expect(page).to have_text "Welcome, #{user.name}"
+  end
 end
