@@ -24,7 +24,7 @@ RSpec.feature "Visitor logs in with facebook", type: :feature do
   end
 
   before :each do
-    OmniAuth.config.mock_auth[:twitter] = nil
+    OmniAuth.config.mock_auth[:facebook] = nil
   end
 
   context "and they approve the request" do
@@ -47,7 +47,7 @@ RSpec.feature "Visitor logs in with facebook", type: :feature do
       expect(user.oauth_token_expires_at).to eq Time.at(1493955507)
 
       expect(current_path).to eq "/"
-      expect(page).to have_text "Welcome, #{user.name}"
+      expect(page).to have_text "Logged in as #{user.name} | Log Out"
       within "#flash-messages" do
         expect(page).to have_text "Login Successful"
       end
@@ -62,7 +62,7 @@ RSpec.feature "Visitor logs in with facebook", type: :feature do
       click_on "Log in with Facebook"
 
       expect(current_path).to eq login_path
-      expect(page).to_not have_text "Welcome, "
+      expect(page).to_not have_text "Log Out"
       within "#flash-messages" do
         expect(page).to have_text "Login Unsuccessful"
       end
@@ -81,11 +81,34 @@ RSpec.feature "Visitor logs in with facebook", type: :feature do
       visit login_path
       click_on "Log in with Facebook"
 
-      expect(page).to have_text "Welcome, #{User.first.name}"
+      expect(page).to have_text "Logged in as #{User.first.name} | Log Out"
       within "#flash-messages" do
         expect(page).to have_text "Login Successful"
       end
       expect(User.count).to eq 1
+    end
+  end
+
+  context "and then logs out" do
+    scenario "they are first logged in and then out" do
+      omniauth_facebook_mock_success(from_facebook)
+
+      visit login_path
+      click_on "Log in with Facebook"
+
+      expect(page).to have_text "Logged in as #{User.first.name} | Log Out"
+      within "#flash-messages" do
+        expect(page).to have_text "Login Successful"
+      end
+
+      click_on "Log Out"
+
+      expect(current_path).to eq login_path
+      expect(page).to have_text "Log in with Facebook"
+      expect(page).to_not have_text "Log Out"
+      within "#flash-messages" do
+        expect(page).to have_text "Logout Successful"
+      end
     end
   end
 end
