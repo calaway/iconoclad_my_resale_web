@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_oauth(oauth_info)
     session[:user_id] = user.id
-    redirect_to "/"
+    redirect_to "/", notice: "Login Successful"
+  end
+
+  def failure
+    redirect_to login_path, notice: "Login Unsuccessful"
   end
 
 private
