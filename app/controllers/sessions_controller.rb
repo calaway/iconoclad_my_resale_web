@@ -12,6 +12,11 @@ class SessionsController < ApplicationController
     redirect_to login_path, notice: "Login Unsuccessful"
   end
 
+  def destroy
+    reset_session
+    redirect_to login_path, notice: "Logout Successful"
+  end
+
 private
   def oauth_info
     request.env['omniauth.auth']

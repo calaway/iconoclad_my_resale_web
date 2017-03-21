@@ -1,28 +1,34 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor logs in with facebooks", type: :feature do
-  context "and they approve the request" do
-    scenario "the user is created and logged in" do
-      from_facebook = {
-        "provider"=>"facebook",
-        "uid"=>"12345678901234567",
-        "info"=>{
+RSpec.feature "Visitor logs in with facebook", type: :feature do
+  let(:from_facebook) do
+    {
+      "provider"=>"facebook",
+      "uid"=>"12345678901234567",
+      "info"=>{
+        "name"=>"Christopher Calaway",
+        "image"=>"http://graph.facebook.com/v2.6/10154446829432039/picture"
+      },
+      "credentials"=>{
+        "token"=>"xxxxxx",
+        "expires_at"=>1493955507,
+        "expires"=>true
+      },
+      "extra"=>{
+        "raw_info"=>{
           "name"=>"Christopher Calaway",
-          "image"=>"http://graph.facebook.com/v2.6/10154446829432039/picture"
-        },
-        "credentials"=>{
-          "token"=>"xxxxxx",
-          "expires_at"=>1493955507,
-          "expires"=>true
-        },
-        "extra"=>{
-          "raw_info"=>{
-            "name"=>"Christopher Calaway",
-            "id"=>"12345678901234567"
-          }
+          "id"=>"12345678901234567"
         }
       }
+    }
+  end
 
+  before :each do
+    OmniAuth.config.mock_auth[:facebook] = nil
+  end
+
+  context "and they approve the request" do
+    scenario "the user is created and logged in" do
       omniauth_facebook_mock_success(from_facebook)
 
       visit root_path
@@ -41,7 +47,7 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
       expect(user.oauth_token_expires_at).to eq Time.at(1493955507)
 
       expect(current_path).to eq "/"
-      expect(page).to have_text "Welcome, #{user.name}"
+      expect(page).to have_text "Logged in as #{user.name} | Log Out"
       within "#flash-messages" do
         expect(page).to have_text "Login Successful"
       end
@@ -56,11 +62,53 @@ RSpec.feature "Visitor logs in with facebooks", type: :feature do
       click_on "Log in with Facebook"
 
       expect(current_path).to eq login_path
-      expect(page).to_not have_text "Welcome, "
+      expect(page).to_not have_text "Log Out"
       within "#flash-messages" do
         expect(page).to have_text "Login Unsuccessful"
       end
       expect(User.count).to eq 0
+    end
+  end
+
+  context "that is already in our system" do
+    scenario "they are logged in without creating an new user" do
+      expect {
+        User.find_or_create_from_oauth(OmniAuth::AuthHash.new(from_facebook))
+      }.to change{ User.count }.from(0).to(1)
+
+      omniauth_facebook_mock_success(from_facebook)
+
+      visit login_path
+      click_on "Log in with Facebook"
+
+      expect(page).to have_text "Logged in as #{User.first.name} | Log Out"
+      within "#flash-messages" do
+        expect(page).to have_text "Login Successful"
+      end
+      expect(User.count).to eq 1
+    end
+  end
+
+  context "and then logs out" do
+    scenario "they are first logged in and then out" do
+      omniauth_facebook_mock_success(from_facebook)
+
+      visit login_path
+      click_on "Log in with Facebook"
+
+      expect(page).to have_text "Logged in as #{User.first.name} | Log Out"
+      within "#flash-messages" do
+        expect(page).to have_text "Login Successful"
+      end
+
+      click_on "Log Out"
+
+      expect(current_path).to eq login_path
+      expect(page).to have_text "Log in with Facebook"
+      expect(page).to_not have_text "Log Out"
+      within "#flash-messages" do
+        expect(page).to have_text "Logout Successful"
+      end
     end
   end
 end
