@@ -41,6 +41,9 @@ gem 'omniauth-facebook'
 # Securely manage confidential environment variables
 gem 'figaro'
 
+# Library used for automating interaction with websites
+gem 'mechanize'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
