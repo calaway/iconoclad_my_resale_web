@@ -1,7 +1,4 @@
 AllCops:
-  Include:
-    - '**/Rakefile'
-    - '**/config.ru'
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -10,6 +7,10 @@ AllCops:
 
 Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/features/**/*'
 
 Metrics/LineLength:
   Max: 100
