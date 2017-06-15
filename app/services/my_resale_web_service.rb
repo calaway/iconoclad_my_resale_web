@@ -6,13 +6,13 @@ module MyResaleWebService
 
   def self.signin(consignor_id, consignor_last_name)
     signin_page = open_web_page('http://www.myresaleweb.com/')
-    signin_form = signin_page.form_with(action: "../signin.asp")
-    form_values = {"state" => "UT",
-                   "storeid" => "BK1652",
-                   "consignorid" => consignor_id,
-                   "consignorlastname" => consignor_last_name}
+    signin_form = signin_page.form_with(action: '../signin.asp')
+    form_values = { 'state' => 'UT',
+                    'storeid' => 'BK1652',
+                    'consignorid' => consignor_id,
+                    'consignorlastname' => consignor_last_name }
     fill_form(signin_form, form_values)
-    submit_with_button(signin_form, "Check My Account")
+    submit_with_button(signin_form, 'Check My Account')
   end
 
   def self.open_web_page(url)
@@ -32,10 +32,10 @@ module MyResaleWebService
   end
 
   def self.parse_balance_page_content(balance_page)
-    balances_content_raw = balance_page.css("div#consigner_content_text p")
-    balances_content = balances_content_raw.map do |p_tag|
-      [p_tag.at_css("strong").text.chomp(":"),
-       p_tag.at_css("span").text]
+    balances_content_raw = balance_page.css('div#consigner_content_text p')
+    balances_content_raw.map do |p_tag|
+      [p_tag.at_css('strong').text.chomp(':'),
+       p_tag.at_css('span').text]
     end.to_h
   end
 end
