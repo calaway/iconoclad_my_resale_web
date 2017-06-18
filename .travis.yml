@@ -7,7 +7,7 @@ before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - cp config/database.yml.travis config/database.yml
 script:
-- bundle exec rubocop
+# - bundle exec rubocop
 - bundle exec rspec spec
 notifications:
   slack:
