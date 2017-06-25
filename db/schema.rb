@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307012922) do
+ActiveRecord::Schema.define(version: 20170624213759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20170307012922) do
     t.datetime "oauth_token_expires_at"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "myresaleweb_id"
+    t.string   "myresaleweb_last_name"
   end
 
 end

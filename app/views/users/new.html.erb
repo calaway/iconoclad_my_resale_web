@@ -1,0 +1,5 @@
+<%= form_for @user, url: {action: "new"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.text_field :myresaleweb_id %>
+  <%= f.text_field :myresaleweb_last_name %>
+  <%= f.submit "Submit" %>
+<% end %>
