@@ -1,0 +1,3 @@
+test:
+  pre:
+    - bundle exec rubocop --format=html --out=$CIRCLE_ARTIFACTS/rubocop.html --format=progress
