@@ -13,8 +13,8 @@ RSpec.feature 'Visitor adds myresaleweb credentials', type: :feature do
       expect(current_path).to eq '/credentials'
 
       # Enter MRW credentials
-      fill_in('myresaleweb_id', with: ENV['MY_RESALE_WEB_ID_1'])
-      fill_in('myresaleweb_last_name', with: ENV['MY_RESALE_WEB_NAME_1'])
+      fill_in('user_myresaleweb_id', with: ENV['MY_RESALE_WEB_ID_1'])
+      fill_in('user_myresaleweb_last_name', with: ENV['MY_RESALE_WEB_NAME_1'])
 
       # Click submit
       click_on 'Submit'

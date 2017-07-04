@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete '/login', to: 'sessions#destroy', as: 'logout'
 
   get '/credentials', to: 'users#new'
+  post '/credentials', to: 'users#create'
 
   get '/auth/facebook', as: 'facebook_login'
   get '/auth/:provider/callback', to: 'sessions#create'

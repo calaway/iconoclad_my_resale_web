@@ -11,4 +11,14 @@ class UsersController < ApplicationController
   def new
     @user = current_user
   end
+
+  def create
+    current_user.update({
+      myresaleweb_id: params[:user][:myresaleweb_id],
+      myresaleweb_last_name: params[:user][:myresaleweb_last_name]
+    })
+
+    redirect_to(root_path)
+  end
+
 end
