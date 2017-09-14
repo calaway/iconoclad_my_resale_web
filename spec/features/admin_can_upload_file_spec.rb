@@ -19,9 +19,9 @@ RSpec.feature 'User visits upload page', type: :feature do
     end
 
     scenario 'sees admin inventory new page' do
-      visit('/admin/inventory/new')
+      visit('/admin')
 
-      expect(current_path).to eq('/admin/inventory/new')
+      expect(current_path).to eq('/admin')
     end
 
     scenario 'uploaded file successfully' do
