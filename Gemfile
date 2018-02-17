@@ -35,7 +35,7 @@ gem 'jbuilder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# To allow login via FaceBook
+# Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
 
 # Securely manage confidential environment variables
@@ -47,15 +47,24 @@ gem 'mechanize'
 # Style guide
 gem 'rubocop', require: false
 
+# A library for reading Microsoft Access databases
+gem 'mdb'
+
 group :development, :test do
+  # Debugger
   gem 'pry-byebug'
+  # Debugger
   gem 'pry-rails'
+  # Test runner
   gem 'rspec-rails'
 end
 
 group :test do
+  # Acceptance test framework for web applications
   gem 'capybara'
+  # A helper for launching cross-platform applications in a fire and forget manner
   gem 'launchy'
+  # Code coverage
   gem 'simplecov', require: false
 end
 
