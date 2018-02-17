@@ -1,7 +1,9 @@
 AllCops:
+  DisplayCopNames: true
   Exclude:
-    - 'db/**/*'
+    - 'bin/**/*'
     - 'config/**/*'
+    - 'db/**/*'
     - 'script/**/*'
     - 'vendor/**/*'
 
@@ -14,3 +16,6 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Max: 100
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
