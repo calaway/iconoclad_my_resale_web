@@ -6,7 +6,7 @@ RSpec.feature 'User visits upload page', type: :feature do
       user = User.create(name: 'test', myresaleweb_id: 'no', myresaleweb_last_name: 'yeah')
       stub_login(user)
 
-      visit('/admin')
+      visit('/admin/uploads/new')
 
       expect(current_path).to eq('/')
     end
@@ -19,16 +19,16 @@ RSpec.feature 'User visits upload page', type: :feature do
     end
 
     scenario 'sees admin inventory new page' do
-      visit('/admin')
+      visit('/admin/uploads/new')
 
-      expect(current_path).to eq('/admin')
+      expect(current_path).to eq('/admin/uploads/new')
     end
 
     scenario 'uploaded file successfully' do
-      visit('/admin')
-      attach_file('inventory_file', 'spec/fixtures/inventory.csv')
+      visit('/admin/uploads/new')
+      attach_file('inventory_file', 'spec/fixtures/consign.mdb')
 
-      expect(current_path).to eq('/admin/')
+      expect(current_path).to eq('/admin/uploads/new')
     end
 
     scenario 'wrong file type' do
