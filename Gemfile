@@ -6,26 +6,27 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.5'
+
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -34,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# To allow login via FaceBook
+# Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
 
 # Securely manage confidential environment variables
@@ -43,37 +44,35 @@ gem 'figaro'
 # Library used for automating interaction with websites
 gem 'mechanize'
 
-gem 'rails_12factor', group: :production
-
 # Style guide
 gem 'rubocop', require: false
 
-# Read mdb files
+# A library for reading Microsoft Access databases
 gem 'mdb'
 
-gem 'rb-readline'
-
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  # Debugger
+  gem 'pry-byebug'
+  # Debugger
+  gem 'pry-rails'
+  # Test runner
+  gem 'rspec-rails'
 end
 
 group :test do
+  # Acceptance test framework for web applications
   gem 'capybara'
+  # A helper for launching cross-platform applications in a fire and forget manner
   gem 'launchy'
+  # Code coverage
   gem 'simplecov', require: false
 end
 
 group :development do
   gem 'listen', '~> 3.0.5'
-  gem 'pry-rails'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
