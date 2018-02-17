@@ -16,8 +16,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignore application configuration
-/config/application.yml
+# Ignore secret environment variables
+*.local
 
 # Ignore SimpleCov files
 coverage

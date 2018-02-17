@@ -38,19 +38,15 @@ gem 'jbuilder'
 # Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
 
-# Securely manage confidential environment variables
-gem 'figaro'
-
-# Library used for automating interaction with websites
-gem 'mechanize'
+# A library for reading Microsoft Access databases
+gem 'mdb'
 
 # Style guide
 gem 'rubocop', require: false
 
-# A library for reading Microsoft Access databases
-gem 'mdb'
-
 group :development, :test do
+  # Load environment variables
+  gem 'dotenv-rails'
   # Debugger
   gem 'pry-byebug'
   # Debugger
