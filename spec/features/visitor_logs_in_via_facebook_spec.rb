@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Visitor logs in via Facebook', type: :feature do
+feature 'Visitor logs in via Facebook', type: :feature do
   let(:from_facebook) do
     {
       'provider' => 'facebook',
