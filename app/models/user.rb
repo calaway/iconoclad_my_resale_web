@@ -7,4 +7,8 @@ class User < ApplicationRecord
       user.oauth_token_expires_at = Time.at(oauth_info[:credentials][:expires_at])
     end
   end
+
+  def self.admin?(uid)
+    ENV.fetch('ADMINS').split(',').include?(uid)
+  end
 end

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_or_create_from_oauth(oauth_info)
+    user.update(admin: User.admin?(oauth_info[:uid]))
     session[:user_id] = user.id
     redirect_to '/', notice: 'Login Successful'
   end
