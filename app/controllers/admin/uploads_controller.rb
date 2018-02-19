@@ -1,7 +1,13 @@
 module Admin
   class UploadsController < ApplicationController
-    def new
+    before_action :authorize!
 
+    def new; end
+
+    private
+
+    def authorize!
+      raise(ActionController::RoutingError, 'Not Found') unless admin?
     end
   end
 end

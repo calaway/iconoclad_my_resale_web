@@ -61,7 +61,8 @@ feature 'Admin logs in via Facebook', type: :feature do
       expect(current_user.admin?).to be(false)
 
       expect(has_link?('Admin Dashboard')).to be(false)
-      expect(current_path).to eq root_path
+
+      expect { visit new_admin_upload_path }.to raise_error(ActionController::RoutingError)
     end
   end
 end
