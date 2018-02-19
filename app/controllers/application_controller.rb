@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  before_action :authorize!
+  before_action :authenticate!
 
-  def authorize!
+  def authenticate!
     is_login_path = params[:controller] == 'sessions' &&
                     params[:action].in?(%w[new create failure])
     return if current_user || is_login_path
