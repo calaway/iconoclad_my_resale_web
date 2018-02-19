@@ -4,6 +4,10 @@ module Admin
 
     def new; end
 
+    def create
+      consign_mdb = Mdb.open(params[:upload].tempfile)
+    end
+
     private
 
     def authorize!
