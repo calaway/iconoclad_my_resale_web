@@ -60,6 +60,8 @@ group :test do
   gem 'capybara'
   # A helper for launching cross-platform applications in a fire and forget manner
   gem 'launchy'
+  # Collection of testing matchers extracted from Shoulda
+  gem 'shoulda-matchers'
   # Code coverage
   gem 'simplecov', require: false
 end
