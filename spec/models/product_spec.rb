@@ -10,6 +10,6 @@ describe Product, type: :model do
     jodi = Customer.find(10)
 
     expect(described_class.count).to eq(64_879)
-    expect(jodi.products.count).to eq(50)
+    expect(jodi.products.count).to eq(178)
   end
 end

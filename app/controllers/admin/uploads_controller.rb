@@ -6,6 +6,7 @@ module Admin
 
     def create
       consign_mdb = Mdb.open(params[:upload].tempfile)
+      Upload.import(consign_mdb)
     end
 
     private

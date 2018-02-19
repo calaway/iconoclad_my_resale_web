@@ -13,5 +13,8 @@ feature 'Admin uploads mdb file', type: :feature do
     click_on('Submit')
 
     expect(Customer.count).to eq(3497)
+    expect(Product.count).to eq(64_879)
+    expect(Customer.find(706).last_name).to eq('Calaway')
+    expect(Customer.find(10).products.count).to eq(178)
   end
 end
