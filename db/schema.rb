@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20180219064831) do
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.integer "customer_id"
     t.string "first_name"
     t.string "last_name"
     t.float "account_balance"
@@ -25,13 +24,12 @@ ActiveRecord::Schema.define(version: 20180219064831) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer "product_id"
+  create_table "products", force: :cascade do |t|
     t.bigint "customer_id"
     t.string "product_type"
-    t.string "product_color"
-    t.string "product_size"
-    t.string "product_description"
+    t.string "color"
+    t.string "size"
+    t.string "description"
     t.float "original_price"
     t.float "price"
     t.date "enter_date"
@@ -40,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180219064831) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_items_on_customer_id"
+    t.index ["customer_id"], name: "index_products_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,5 +52,5 @@ ActiveRecord::Schema.define(version: 20180219064831) do
     t.boolean "admin", default: false, null: false
   end
 
-  add_foreign_key "items", "customers"
+  add_foreign_key "products", "customers"
 end
