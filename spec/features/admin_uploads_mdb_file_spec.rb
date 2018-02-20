@@ -16,5 +16,10 @@ feature 'Admin uploads mdb file', type: :feature do
     expect(Product.count).to eq(258)
     expect(Customer.find(706).last_name).to eq('Calaway')
     expect(Customer.find(10).products.count).to eq(178)
+
+    expect(current_path).to eq(new_admin_upload_path)
+    within '#flash-messages' do
+      expect(page).to have_text "Success! You're the best!"
+    end
   end
 end

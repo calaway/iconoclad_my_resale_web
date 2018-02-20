@@ -6,7 +6,13 @@ module Admin
 
     def create
       consign_mdb = Mdb.open(params[:upload].tempfile)
-      Upload.import(consign_mdb)
+      errors = Upload.import(consign_mdb)
+      if errors.empty?
+        flash[:notice] = "Success! You're the best!"
+      else
+        flash[:alert] = 'ERROR: Records not successfully imported'
+      end
+      redirect_to action: 'new'
     end
 
     private
