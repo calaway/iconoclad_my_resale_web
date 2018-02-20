@@ -9,11 +9,11 @@ feature 'Admin uploads mdb file', type: :feature do
   scenario 'the records are loaded in the database' do
     visit new_admin_upload_path
 
-    attach_file('Upload consign.mdb file', Rails.root.join('spec', 'fixtures', 'consign.mdb'))
+    attach_file('Upload consign.mdb file', 'spec/fixtures/consign_sample.mdb')
     click_on('Submit')
 
-    expect(Customer.count).to eq(3497)
-    expect(Product.count).to eq(64_879)
+    expect(Customer.count).to eq(10)
+    expect(Product.count).to eq(258)
     expect(Customer.find(706).last_name).to eq('Calaway')
     expect(Customer.find(10).products.count).to eq(178)
   end
