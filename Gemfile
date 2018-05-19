@@ -63,10 +63,10 @@ group :test do
   gem 'capybara'
   # A helper for launching cross-platform applications in a fire and forget manner
   gem 'launchy'
-  # Code coverage
-  gem 'simplecov', require: false
   # RSpec results formatted as JUnit XML
   gem 'rspec_junit_formatter'
+  # Code coverage
+  gem 'simplecov', require: false
 end
 
 group :development do
