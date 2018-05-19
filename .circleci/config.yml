@@ -63,8 +63,8 @@ jobs:
       - run:
           name: Database setup
           command: |
-            bin/rake db:create --trace
-            bin/rake db:schema:load --trace
+            bin/rails db:create --trace
+            bin/rails db:schema:load --trace
 
       - run:
           name: RSpec
