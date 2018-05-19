@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :customer
 
   def self.import(products)
-    products.each do |product|
+    products.map do |product|
       create(id:             product[:ProductID],   customer_id: product[:CustomerID],
              product_type:   product[:ProductType], color:       product[:ProductColor],
              size:           product[:ProductSize], description: product[:ProductDescription],

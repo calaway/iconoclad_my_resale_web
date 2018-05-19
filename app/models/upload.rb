@@ -3,8 +3,11 @@ class Upload < ApplicationRecord
     ActiveRecord::Base.transaction do
       customer_records = Customer.import(consign_mdb[:Customers])
       product_records = Product.import(consign_mdb[:Merchandise])
-      records = [customer_records, product_records].flatten
-      raise ActiveRecord::Rollback unless records.all? { |record| record.errors.empty? }
+      @errors = [customer_records, product_records].flatten.map do |record|
+        record.errors.full_messages
+      end.uniq.flatten
+      raise ActiveRecord::Rollback unless @errors.empty?
     end
+    @errors
   end
 end
