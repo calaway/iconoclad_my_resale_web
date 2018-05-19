@@ -23,6 +23,8 @@
       <% else %>
         <%= link_to "Log in with Facebook", facebook_login_path %>
       <% end %>
+      <hr>
+      <%= link_to 'Admin Dashboard', new_admin_upload_path if admin? %>
     </div>
 
     <%= yield %>

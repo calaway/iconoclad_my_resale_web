@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Visitor logs in with facebook', type: :feature do
+feature 'Visitor logs in via Facebook', type: :feature do
   let(:from_facebook) do
     {
       'provider' => 'facebook',
@@ -27,7 +27,7 @@ RSpec.feature 'Visitor logs in with facebook', type: :feature do
     OmniAuth.config.mock_auth[:facebook] = nil
   end
 
-  context 'and they approve the request' do
+  context 'when they approve the request' do
     scenario 'the user is created and logged in' do
       omniauth_facebook_mock_success(from_facebook)
 
@@ -54,7 +54,7 @@ RSpec.feature 'Visitor logs in with facebook', type: :feature do
     end
   end
 
-  context 'and they deny the request' do
+  context 'when they deny the request' do
     scenario 'no user is created and they are redirected back to login again' do
       omniauth_facebook_mock_failure(:access_denied)
 
@@ -70,7 +70,7 @@ RSpec.feature 'Visitor logs in with facebook', type: :feature do
     end
   end
 
-  context 'that is already in our system' do
+  context 'when they already in our system' do
     scenario 'they are logged in without creating an new user' do
       expect do
         User.find_or_create_from_oauth(OmniAuth::AuthHash.new(from_facebook))
@@ -89,7 +89,7 @@ RSpec.feature 'Visitor logs in with facebook', type: :feature do
     end
   end
 
-  context 'and then logs out' do
+  context 'when they then log out' do
     scenario 'they are first logged in and then out' do
       omniauth_facebook_mock_success(from_facebook)
 
