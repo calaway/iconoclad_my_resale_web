@@ -35,7 +35,7 @@ gem 'jbuilder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Lois reports statuses of CI results to Github Pull Request Statuses
+# Lois reports statuses of CI results to GitHub Pull Request Statuses
 gem 'lois'
 
 # A library for reading Microsoft Access databases
