@@ -53,10 +53,6 @@ jobs:
           command: bin/lois rubocop -g $GITHUB_CREDENTIALS
 
       - run:
-          name: Reek
-          command: bin/lois reek -g $GITHUB_CREDENTIALS
-
-      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 5m
 
