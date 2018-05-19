@@ -65,6 +65,8 @@ group :test do
   gem 'launchy'
   # Code coverage
   gem 'simplecov', require: false
+  # RSpec results formatted as JUnit XML
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
