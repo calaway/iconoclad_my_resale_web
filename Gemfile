@@ -35,11 +35,14 @@ gem 'jbuilder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Facebook OAuth2 Strategy for OmniAuth
-gem 'omniauth-facebook'
+# Lois reports statuses of CI results to GitHub Pull Request Statuses
+gem 'lois'
 
 # A library for reading Microsoft Access databases
 gem 'mdb'
+
+# Facebook OAuth2 Strategy for OmniAuth
+gem 'omniauth-facebook'
 
 # Style guide
 gem 'rubocop', require: false
@@ -60,6 +63,8 @@ group :test do
   gem 'capybara'
   # A helper for launching cross-platform applications in a fire and forget manner
   gem 'launchy'
+  # RSpec results formatted as JUnit XML
+  gem 'rspec_junit_formatter'
   # Code coverage
   gem 'simplecov', require: false
 end
