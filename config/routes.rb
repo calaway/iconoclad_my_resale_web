@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
 
   namespace :admin do
-    resources :uploads, only: [:new]
+    resources :uploads, only: [:new, :create]
   end
 end

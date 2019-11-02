@@ -1,0 +1,5 @@
+<%= form_tag({action: :create}, multipart: true) do %>
+  <%= label_tag(:upload, "Upload consign.mdb file:") %>
+  <%= file_field_tag :upload %>
+  <%= submit_tag("Submit") %>
+<% end %>

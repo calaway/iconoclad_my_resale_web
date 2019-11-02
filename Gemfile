@@ -65,6 +65,8 @@ group :test do
   gem 'launchy'
   # RSpec results formatted as JUnit XML
   gem 'rspec_junit_formatter'
+  # Collection of testing matchers extracted from Shoulda
+  gem 'shoulda-matchers'
   # Code coverage
   gem 'simplecov', require: false
 end
