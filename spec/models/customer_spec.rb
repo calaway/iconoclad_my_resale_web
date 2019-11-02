@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Customer, type: :model do
-  it { is_expected.to have_many(:products) }
+  it { is_expected.to have_many(:products).dependent(:destroy) }
 
   it '.import' do
     consign_mdb = Mdb.open('spec/fixtures/consign_sample.mdb')
