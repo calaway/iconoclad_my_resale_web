@@ -6,9 +6,13 @@ feature 'Admin uploads mdb file', type: :feature do
     stub_login(admin)
   end
 
-  scenario 'the records are loaded in the database' do
-    visit new_admin_upload_path
+  scenario 'old records are destroyed and new records are loaded in the database' do
+    customer = Customer.create(first_name: 'C', last_name: 'Calaway')
+    customer.products.create(product_type: 'shirt', description: 'Bad Religion t-shirt')
+    expect(Customer.count).to eq(1)
+    expect(Product.count).to eq(1)
 
+    visit new_admin_upload_path
     attach_file('Upload consign.mdb file', 'spec/fixtures/consign_sample.mdb')
     click_on('Submit')
 
